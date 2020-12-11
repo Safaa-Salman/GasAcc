@@ -7,14 +7,27 @@ import { baseUrl } from '../shared/baseUrl';
 
 
     function RenderFuel ({fuel, onClick}) { 
-        return (
-            <Card>
-                <Link to={`/TanksFuel/${fuel.id}`} >
-                    <CardImg className="mb-3" src={baseUrl + fuel.image} />
-                    <CardText className="ml-3">Fuel Count: {fuel.count}</CardText>
-                </Link>
-            </Card>
-        );
+    
+        if(fuel.status < 25){
+            return (
+                <Card>
+                    <Link to={`/TanksFuel/${fuel.id}`} >
+                        <CardImg className="mb-3" src='images/Fuel_low.png' />
+                        <CardText className="ml-3">Fuel Count: {fuel.count}</CardText>
+                    </Link>
+                </Card>
+            );
+        }
+        else{
+            return (
+                <Card>
+                    <Link to={`/TanksFuel/${fuel.id}`} >
+                        <CardImg className="mb-3" src='images/Fuel_good.png' />
+                        <CardText className="ml-3">Fuel Count: {fuel.count}</CardText>
+                    </Link>
+                </Card>
+            );
+        }
     }
 
     const TanksFuel = (props) => {

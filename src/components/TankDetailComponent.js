@@ -10,10 +10,10 @@ import { baseUrl } from '../shared/baseUrl';
         return(
             <div>
                 <Card> 
-                    <CardImg top src={baseUrl + specificTank.image} />
+                    <CardImg top src={baseUrl + specificTank.image} style={{width:"50%"}} />
                     <CardBody>
-                    <CardText>{specificTank.fuelCapacity}</CardText>
-                    <CardText>{specificTank.fuelLevel}</CardText>
+                    <CardText>Fuel Capacity: {specificTank.fuelCapacity}</CardText>
+                    <CardText>Fuel Level: {specificTank.fuelLevel}</CardText>
                     </CardBody>
                 </Card>
             </div>
@@ -46,7 +46,7 @@ import { baseUrl } from '../shared/baseUrl';
                             
                                 {tankPumps.map((pump) => {
                                     return(
-                                        <div className="col-12 col-md-4 ml-1" key={pump.id}>
+                                        <div key={pump.id}>
                                              <Card > 
                                                 <CardImg top src={baseUrl + pump.image} />
                                                 <CardBody>
@@ -70,6 +70,7 @@ import { baseUrl } from '../shared/baseUrl';
 
 
     const  TankDetail = (props) =>  {
+
         if (props.specificTankisLoading) {
             return(
                 <div className="container">
@@ -105,7 +106,7 @@ import { baseUrl } from '../shared/baseUrl';
                         <div className="col-12 col-md-4 m-1">
                             <RenderTank specificTank={props.specificTank} />
                         </div>
-                        <div className=" row col-md-8">
+                        <div className="col-12 col-md-7">
                             <RenderPumps tankPumps={props.tankPumps}
                                          tankPumpsErrMess={props.tankPumpsErrMess}
                                          tankPumpsisLoading={props.tankPumpsisLoading}

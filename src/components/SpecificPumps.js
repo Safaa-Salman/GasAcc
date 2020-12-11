@@ -10,7 +10,7 @@ import { baseUrl } from '../shared/baseUrl';
         return (
             <Card >
                 <Link to={`/PumpsFuel/${pump.fuelId}`} >
-                    <CardImg className="mb-3" src={baseUrl + pump.image} />
+                    <CardImg className="mb-3" src="images/pump.jpg" />
                     <CardText className="ml-3">Pump Count:{pump.count}</CardText>
                 </Link>
             </Card>

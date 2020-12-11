@@ -1,25 +1,73 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem,
-    Button, Row, Col, Label } from 'reactstrap';
-import { Control, Form, Errors} from 'react-redux-form';
+    Button, Row, Col, Label, Table, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 
+function RenderReceipt({receipt}) {
+    if (receipt != null){
+                return (
+                    <div>
+                        <Table className="table-striped table-dark ">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Company</th>
+                                    <th>Value</th>
+                                    <th>Serial Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {receipt.map((receipt) => {
+                                    return(
+                                        <tr key={receipt.id}>
+                                        <th scope="row">{receipt.id}</th>
+                                        <td>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(receipt.date)))}</td>
+                                        <td>{receipt.company}</td>
+                                        <td>{receipt.value}</td>
+                                        <td>{receipt.serialnbr}</td>
+                                    </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </Table>
+                    </div>
+                );
+        }
+
+    else{
+        return(
+            <div></div>
+        );
+    }
+}
 
 const required = (val) => val && val.length;
 const minLength = (len) => (val) => val && (val.length >= len);
 const isNumber = (val) => !isNaN(Number(val));
 
-
-class Receipt extends Component  {
+class InvoiceForm extends Component {
 
     constructor(props) {
         super(props);
+    
+        this.state = {
+            isModalOpen: false
+        };
+        this.toggleModal = this.toggleModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);  
-    }
+      }
 
+      toggleModal() {
+        this.setState({
+          isModalOpen: !this.state.isModalOpen
+        });
+      }
 
-    handleSubmit(values) {
+      handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
         this.props.postReceipt(values.company, values.value, values.serialnbr);
@@ -28,26 +76,17 @@ class Receipt extends Component  {
     }
 
     render() {
-
         return(
-            <div className="container">
-                
-                <div className="row">
-                    <Breadcrumb>
-                        <BreadcrumbItem active>Receipt</BreadcrumbItem>
-                    </Breadcrumb>
-                    <div className="col-12">
-                        <h3>Receipt</h3>
-                        <hr />
-                    </div>                
+            <div className="container">     
+                <div>
+                    <Button  onClick={this.toggleModal} color="primary" block> Add Receipt</Button>
                 </div>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Submit Receipt</ModalHeader>
+                    <ModalBody>
+                        <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
 
-                <div className="row row-content">
-
-                    <div className="col-12 col-md-9 h5" >
-                    <Form model="receipt" onSubmit={(values) => this.handleSubmit(values)}>
-
-                            <Row className="form-group">
+                        <Row className="form-group">
                                 <Label htmlFor="company" className="form-header mb-2" xs={12}>Company</Label>   
                                 <Col>
                                     <Control.select model=".company" name="company"
@@ -63,7 +102,7 @@ class Receipt extends Component  {
                                 <Label htmlFor="value" md={3} className="form-header">Value</Label>
                                 <Col md={9}>
                                     <Control.text model=".value" id=".value" name=".value"
-                                        placeholder="value"
+                                        placeholder="value(USD or LL)"
                                         className="form-control"
                                         validators={{
                                             required, minLength: minLength(3), isNumber
@@ -112,12 +151,57 @@ class Receipt extends Component  {
                                     </Button>
                                 </Col>
                             </Row>
-                        </Form>
-                    </div>
-               </div>
+                        </LocalForm>
+                    </ModalBody>
+                </Modal>
             </div>
         );
     }
+}
+
+const  Receipt = (props) =>  {
+
+    if (props.receiptLoading) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    else if (props.receiptErrMess) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <h4>{props.receiptErrMess}</h4>
+                </div>
+            </div>
+        );
+    }
+    else if (props.receipt != null) {
+        return (
+            <div className="container">
+                <div className="row mb-4">
+                    <div className="col-7">
+                        <h3>Receipts</h3>
+                    </div> 
+                    <div className="col-5">
+                        <InvoiceForm postReceipt={props.postReceipt} />
+                    </div>                 
+                </div>
+                <div className="row">
+                    <div className="col-12 overflow-auto">
+                        <RenderReceipt receipt={props.receipt}/>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    else
+        return(
+          <div></div>
+        );
 }
 
 export default Receipt;

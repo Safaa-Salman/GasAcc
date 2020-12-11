@@ -1,52 +1,95 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem,
-    Button, Row, Col, Label } from 'reactstrap';
-import { Control, Form, Errors } from 'react-redux-form';
+import { Breadcrumb, BreadcrumbItem, Label, Button, Modal, ModalHeader, ModalBody, Row, Col, Table } from 'reactstrap';
+import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
+
+function RenderInvoice({invoice}) {
+    if (invoice != null){
+                return (
+                    <div>
+                        <Table className="table-striped table-dark">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Company</th>
+                                    <th>Liter</th>
+                                    <th>Tank</th>
+                                    <th>Value</th>
+                                    <th>Serial Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {invoice.map((invoice) => {
+                                    return(
+                                        <tr key={invoice.id}>
+                                        <th scope="row">{invoice.id}</th>
+                                        <td>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(invoice.date)))}</td>
+                                        <td>{invoice.company}</td>
+                                        <td>{invoice.litre}</td>
+                                        <td>{invoice.tank}</td>
+                                        <td>{invoice.value}</td>
+                                        <td>{invoice.serialnbr}</td>
+                                    </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </Table>
+                    </div>
+                );
+        }
+
+    else{
+        return(
+            <div></div>
+        );
+    }
+}
 
 const required = (val) => val && val.length;
 const minLength = (len) => (val) => val && (val.length >= len);
 const isNumber = (val) => !isNaN(Number(val));
 
-
-class Invoice extends Component  {
+class InvoiceForm extends Component {
 
     constructor(props) {
         super(props);
+    
+        this.state = {
+            isModalOpen: false
+        };
+        this.toggleModal = this.toggleModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);  
-    }
+      }
 
+      toggleModal() {
+        this.setState({
+          isModalOpen: !this.state.isModalOpen
+        });
+      }
 
-    handleSubmit(values) {
+      handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
         this.props.postInvoice(values.company, values.tank, values.value, values.litre, values.serialnbr);
-        this.props.resetInvoiceForm();
+        // this.props.resetInvoiceForm();
         // event.preventDefault();
     }
 
     render() {
-
         return(
-            <div className="container">
-                
-                <div className="row">
-                    <Breadcrumb>
-                        <BreadcrumbItem active>Invoice</BreadcrumbItem>
-                    </Breadcrumb>
-                    <div className="col-12">
-                        <h3>Invoice</h3>
-                        <hr />
-                    </div>                
+            <div className="container">     
+                <div className="ml-auto">
+                    <Button onClick={this.toggleModal} color="primary" block> Add Invoice</Button>
                 </div>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Submit Invoice</ModalHeader>
+                    <ModalBody>
+                        <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
 
-                <div className="row row-content">
-
-                    <div className="col-12 col-md-9 h5">
-                    <Form model="invoice" onSubmit={(values) => this.handleSubmit(values)}>
-
-                            <Row className="form-group">
+                        <Row className="form-group">
                                 <Label htmlFor="company" className="form-header mb-2" xs={12}>Company</Label>   
                                 <Col>
                                     <Control.select model=".company" name="company"
@@ -74,7 +117,7 @@ class Invoice extends Component  {
                                 <Label htmlFor="litre"className="form-header" md={3}>Litre</Label>
                                 <Col md={9}>
                                     <Control.text model=".litre" id=".litre" name=".litre"
-                                        placeholder="qty(USD or LL)"
+                                        placeholder="Quantity(litre)"
                                         className="form-control"
                                         validators={{
                                             required, minLength: minLength(1), isNumber
@@ -97,7 +140,7 @@ class Invoice extends Component  {
                                 <Label htmlFor="value" className="form-header" md={3}>Value</Label>
                                 <Col md={9}>
                                     <Control.text model=".value" id=".value" name=".value"
-                                        placeholder="value"
+                                        placeholder="value(USD or LL)"
                                         className="form-control"
                                         validators={{
                                             required, minLength: minLength(3), isNumber
@@ -146,12 +189,57 @@ class Invoice extends Component  {
                                     </Button>
                                 </Col>
                             </Row>
-                        </Form>
-                    </div>
-               </div>
+                        </LocalForm>
+                    </ModalBody>
+                </Modal>
             </div>
         );
     }
+}
+
+const  Invoice = (props) =>  {
+
+    if (props.invoiceLoading) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    else if (props.invoiceErrMess) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <h4>{props.invoiceErrMess}</h4>
+                </div>
+            </div>
+        );
+    }
+    else if (props.invoice != null) {
+        return (
+            <div className="container">
+                <div className="row mb-4">
+                    <div className="col-7">
+                        <h3>Invoice</h3>
+                    </div>
+                    <div className="col-5">
+                        <InvoiceForm postInvoice={props.postInvoice} />
+                    </div>                 
+                </div>
+                <div className="row">
+                    <div className="col-12 overflow-auto">
+                        <RenderInvoice invoice={props.invoice}/>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    else
+        return(
+          <div></div>
+        );
 }
 
 export default Invoice;

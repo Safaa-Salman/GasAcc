@@ -5,9 +5,12 @@ import { FuelPumps } from './FuelPumps';
 import { FuelTanks } from './FuelTanks';
 import { SpecificPumps } from './SpecificPumps';
 import { SpecificTanks } from './SpecificTanks';
-import { InitialReceipt, InitialInvoice } from './forms';
+import { InitialReceipt, InitialInvoice, InitialFeedback } from './forms';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import { Invoice } from './Invoice';
+import { Receipt } from './Receipt';
+import {Sales} from './Sales';
  
 
 export const ConfigureStore = () => {
@@ -18,9 +21,13 @@ export const ConfigureStore = () => {
             fuelPumps : FuelPumps,
             specificPumps: SpecificPumps,
             specificTanks: SpecificTanks,
+            invoice: Invoice,
+            receipt: Receipt,
+            sales: Sales,
             ...createForms({
-                receipt: InitialReceipt,
-                invoice: InitialInvoice
+                feedback: InitialFeedback
+                // receipt: InitialReceipt,
+                // invoice: InitialInvoice
             })
         }),
         applyMiddleware(thunk, logger)

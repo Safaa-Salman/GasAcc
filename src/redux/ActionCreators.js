@@ -1,6 +1,91 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
 
+
+//-----------------------------------------Sales----------------------------------------------
+
+export const fetchSales = () => (dispatch) => {  
+  
+  dispatch(SalesLoading(true));
+  return fetch(baseUrl + 'sales')
+  .then(response => {
+      if (response.ok) {
+        return response;
+      }
+      else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+    })
+  .then(response => response.json())
+  .then(sales => dispatch(addSales(sales)))
+  .catch(error => dispatch(SalesFailed(error.message)));
+};
+
+export const SalesLoading = () => ({
+  type: ActionTypes.SALES_LOADING
+});
+
+export const SalesFailed = (errmess) => ({
+  type: ActionTypes.SALES_FAILED,
+  payload: errmess
+});
+
+export const addSales = (sales) => ({
+  type: ActionTypes.ADD_SALES,
+  payload: sales
+});
+//---------------------------------------Contact us: Feedback Form---------------------------------------
+
+export const postFeedback = (firstname, lastname, telnum, email, agree, contactType, message) => (dispatch) => {
+
+  const newFeedback = {
+    firstname: firstname,
+    lastname: lastname,
+    telnum: telnum,
+    email: email,
+    agree: agree,
+    contactType: contactType,
+    message: message
+  };
+  newFeedback.date = new Date().toISOString();
+  
+  return fetch(baseUrl + 'feedback', {
+      method: "POST",
+      body: JSON.stringify(newFeedback),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+  })
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })
+  .then(response => response.json())
+  .then(response => dispatch(addFeedback(response)))
+  .catch(error =>  { console.log('post feedback', error.message); alert('Your feedback could not be posted\nError: '+error.message); });
+};
+
+export const addFeedback = (feedback) => ({
+  type: ActionTypes.ADD_FEEDBACK,
+  payload: feedback
+});
+
+
 //---------------------------------------Receipt and Invoice----------------------------------------
 export const addReceipt = (receipt) => ({
   type: ActionTypes.ADD_RECEIPT,
@@ -81,6 +166,73 @@ export const postInvoice = (company, tank, litre, value, serialnbr) => (dispatch
   .then(response => dispatch(addInvoice(response)))
   .catch(error =>  { console.log('post Invoice', error.message); alert('Your Invoice could not be posted\nError: '+error.message); });
 };
+
+export const fetchInvoice = () => (dispatch) => {  
+  
+  dispatch(InvoiceLoading(true));
+  return fetch(baseUrl + 'invoice')
+  .then(response => {
+      if (response.ok) {
+        return response;
+      }
+      else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+    })
+  .then(response => response.json())
+  .then(invoice => dispatch(addInvoice(invoice)))
+  .catch(error => dispatch(InvoiceFailed(error.message)));
+};
+
+export const InvoiceLoading = () => ({
+  type: ActionTypes.INVOICE_LOADING
+});
+
+export const InvoiceFailed = (errmess) => ({
+  type: ActionTypes.INVOICE_FAILED,
+  payload: errmess
+});
+
+
+export const fetchReceipt = () => (dispatch) => {  
+  
+  dispatch(ReceiptLoading(true));
+  return fetch(baseUrl + 'receipt')
+  .then(response => {
+      if (response.ok) {
+        return response;
+      }
+      else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          var errmess = new Error(error.message);
+          throw errmess;
+    })
+  .then(response => response.json())
+  .then(receipt => dispatch(addReceipt(receipt)))
+  .catch(error => dispatch(ReceiptFailed(error.message)));
+};
+
+export const ReceiptLoading = () => ({
+  type: ActionTypes.RECEIPT_LOADING
+});
+
+export const ReceiptFailed = (errmess) => ({
+  type: ActionTypes.RECEIPT_FAILED,
+  payload: errmess
+});
+
+
 //------------------------------------------ Fuel Tanks; Specific Tanks; Tank Detail --------------------------------
 
 

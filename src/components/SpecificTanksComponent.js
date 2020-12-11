@@ -7,15 +7,29 @@ import { baseUrl } from '../shared/baseUrl';
 
 
     function RenderTank ({tank, onClick}) {
-        return (
-            <Card>
-                <Link to={`/TanksFuel/${tank.fuelId}/Tank/${tank.id}`} >
-                    <CardImg className="mb-3"src={baseUrl + tank.image} />
-                    <CardText className="ml-3">Fuel Capacity: {tank.fuelCapacity}</CardText>
-                    <CardText className="ml-3">Fuel Level: {tank.fuelLevel}</CardText>
-                </Link>
-            </Card>
-        );
+
+        if(tank.status < 25){
+            return (
+                <Card>
+                    <Link to={`/TanksFuel/${tank.fuelId}/Tank/${tank.id}`} >
+                        <CardImg className="mb-3" src='images/Tank_low.jpg' />
+                        <CardText className="ml-3">Fuel Capacity: {tank.fuelCapacity}</CardText>
+                        <CardText className="ml-3">Fuel Level: {tank.fuelLevel}</CardText>
+                    </Link>
+                </Card>
+            );
+        }
+        else{
+            return (
+                <Card>
+                    <Link to={`/TanksFuel/${tank.fuelId}/Tank/${tank.id}`} >
+                        <CardImg className="mb-3" src='images/Tank_good.jpg' />
+                        <CardText className="ml-3">Fuel Capacity: {tank.fuelCapacity}</CardText>
+                        <CardText className="ml-3">Fuel Level: {tank.fuelLevel}</CardText>
+                    </Link>
+                </Card>
+            );
+        }
     }
 
     const SpecificTanks = (props) => {
