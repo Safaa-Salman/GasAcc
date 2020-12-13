@@ -12,8 +12,8 @@ import { baseUrl } from '../shared/baseUrl';
             return (
                 <Card>
                     <Link to={`/PumpsFuel/${fuel.id}`} >
-                        <CardImg className="mb-3" src='images/Fuel_low.png' />
-                        <CardText className="ml-3">Fuel Count: {fuel.count}</CardText>
+                        <CardImg className="mb-3" src='images/Fuel_low.png' style={{border: "0.5em solid #eb1c24"}} />
+                        <CardText className="ml-2">Fuel Quantity: {fuel.qty} L</CardText>
                     </Link>
                 </Card>
             ); 
@@ -23,7 +23,7 @@ import { baseUrl } from '../shared/baseUrl';
                 <Card>
                     <Link to={`/PumpsFuel/${fuel.id}`} >
                         <CardImg className="mb-3" src='images/Fuel_good.png' />
-                        <CardText className="ml-3">Fuel Count: {fuel.count}</CardText>
+                        <CardText className="ml-2">Fuel Quantity: {fuel.qty} L</CardText>
                     </Link>
                 </Card>
             );

@@ -84,9 +84,56 @@ export const addFeedback = (feedback) => ({
   type: ActionTypes.ADD_FEEDBACK,
   payload: feedback
 });
+//------------------------------------------Login Form------------------------------------------------
+export const postLogin = (email, password) => (dispatch) => {
 
+  const newLogin = {
+    email: email,
+    password: password
+  };
+  
+  return fetch(baseUrl + 'login', {
+      method: "POST",
+      body: JSON.stringify(newLogin),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
+  })
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })
+  .then(response => response.json())
+  .then(response => dispatch(addLogin(response)))
+  .catch(error =>  { console.log('post login', error.message); alert("Coudn't Login \nError: "+error.message); });
+};
+
+export const addLogin = (login) => ({
+  type: ActionTypes.ADD_LOGIN,
+  payload: login
+});
 
 //---------------------------------------Receipt and Invoice----------------------------------------
+
+export const addOneReceipt = (onereceipt) => ({
+  type: ActionTypes.ADD_ONERECEIPT,
+  payload: onereceipt
+});
+
+export const addOneInvoice = (oneinvoice) => ({
+  type: ActionTypes.ADD_ONEINVOICE,
+  payload: oneinvoice
+});
+
 export const addReceipt = (receipt) => ({
   type: ActionTypes.ADD_RECEIPT,
   payload: receipt
@@ -127,7 +174,7 @@ export const postReceipt = (company, value, serialnbr) => (dispatch) => {
           throw error;
     })
   .then(response => response.json())
-  .then(response => dispatch(addReceipt(response)))
+  .then(response => dispatch(addOneReceipt(response)))
   .catch(error =>  { console.log('post receipt', error.message); alert('Your receipt could not be posted\nError: '+error.message); });
 };
 
@@ -163,7 +210,7 @@ export const postInvoice = (company, tank, litre, value, serialnbr) => (dispatch
           throw error;
     })
   .then(response => response.json())
-  .then(response => dispatch(addInvoice(response)))
+  .then(response => dispatch(addOneInvoice(response)))
   .catch(error =>  { console.log('post Invoice', error.message); alert('Your Invoice could not be posted\nError: '+error.message); });
 };
 

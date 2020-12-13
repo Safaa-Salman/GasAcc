@@ -13,7 +13,12 @@ export const Invoice = (state  = { isLoading: true,
         case ActionTypes.INVOICE_FAILED:
             return {...state, isLoading: false, errMess: action.payload};
 
+        case ActionTypes.ADD_ONEINVOICE:
+            var oneinvoice = action.payload;
+            return { ...state, invoice: state.invoice.concat(oneinvoice)};
+
         default:
           return state;
       }
 };
+

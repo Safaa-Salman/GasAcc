@@ -71,7 +71,8 @@ class InvoiceForm extends Component {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
         this.props.postReceipt(values.company, values.value, values.serialnbr);
-        this.props.resetReceiptForm();
+        // window.location.reload();
+        // this.props.resetReceiptForm();
         // event.preventDefault();
     }
 
@@ -113,8 +114,8 @@ class InvoiceForm extends Component {
                                         model=".value"
                                         show="touched"
                                         messages={{
-                                            required: 'Required',
-                                            minLength: 'Must be greater than 3 numbers',
+                                            required: 'Required, ',
+                                            minLength: 'Must be greater than 3 numbers ',
                                             isNumber: 'Must be a number'
                                         }}
                                      />
@@ -136,8 +137,8 @@ class InvoiceForm extends Component {
                                         model=".serialnbr"
                                         show="touched"
                                         messages={{
-                                            required: 'Required',
-                                            minLength: 'Must be greater than 3 numbers',
+                                            required: 'Required, ',
+                                            minLength: 'Must be greater than 3 numbers ',
                                             isNumber: 'Must be a number'
                                         }}
                                      />
@@ -145,7 +146,7 @@ class InvoiceForm extends Component {
                             </Row>
 
                             <Row className="form-group">
-                                <Col md={{size:6, offset: 3}}>
+                                <Col ms={12} md={{size:6, offset: 3}}>
                                     <Button type="submit" color="primary" block>
                                     ADD
                                     </Button>

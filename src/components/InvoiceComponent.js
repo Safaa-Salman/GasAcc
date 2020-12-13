@@ -5,7 +5,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 
 
-function RenderInvoice({invoice}) {
+function RenderInvoice({invoice, postInvoice}) {
     if (invoice != null){
                 return (
                     <div>
@@ -70,13 +70,14 @@ class InvoiceForm extends Component {
         });
       }
 
-      handleSubmit(values) {
+      async handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
         this.props.postInvoice(values.company, values.tank, values.value, values.litre, values.serialnbr);
         // this.props.resetInvoiceForm();
         // event.preventDefault();
     }
+    // handleSudmit().then(window.location.reload());
 
     render() {
         return(
@@ -128,8 +129,8 @@ class InvoiceForm extends Component {
                                         model=".litre"
                                         show="touched"
                                         messages={{
-                                            required: 'Required',
-                                            minLength: 'Must be greater than 3 numbers',
+                                            required: 'Required, ',
+                                            minLength: 'Must be greater than 3 numbers ',
                                             isNumber: 'Must be a number'
                                         }}
                                      />
@@ -151,8 +152,8 @@ class InvoiceForm extends Component {
                                         model=".value"
                                         show="touched"
                                         messages={{
-                                            required: 'Required',
-                                            minLength: 'Must be greater than 3 numbers',
+                                            required: 'Required, ',
+                                            minLength: 'Must be greater than 3 numbers ',
                                             isNumber: 'Must be a number'
                                         }}
                                      />
@@ -230,7 +231,8 @@ const  Invoice = (props) =>  {
                 </div>
                 <div className="row">
                     <div className="col-12 overflow-auto">
-                        <RenderInvoice invoice={props.invoice}/>
+                        <RenderInvoice invoice={props.invoice}
+                                       postInvoice={props.postInvoice}/>
                     </div>
                 </div>
             </div>

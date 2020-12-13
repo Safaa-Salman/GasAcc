@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, UncontrolledDropdown,DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { FaDollarSign, FaGasPump, FaFileInvoiceDollar, FaPhoneAlt, FaHome} from 'react-icons/fa';
+import { BsGraphUp, BsInfoCircle} from "react-icons/bs";
+import { GiFuelTank } from "react-icons/gi";
+import { IoReceipt } from "react-icons/io5";
+import { RiBuildingLine } from "react-icons/ri";
 
 
 class Header extends Component {
@@ -38,42 +43,42 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                                 <NavItem >
-                                    <NavLink className="nav-link"  to='/home'>Home </NavLink>
+                                    <NavLink className="nav-link"  to='/home'> Home </NavLink>
                                 </NavItem>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
-                                        Financial Reports
+                                         Financial Reports
                                     </DropdownToggle>
                                     <DropdownMenu left>
                                         <DropdownItem>
-                                            <NavLink className="nav-link"  to='/sales'>Sales </NavLink>
+                                            <NavLink className="nav-link"  to='/sales'><BsGraphUp/> Sales </NavLink>
                                         </DropdownItem>
                                         <DropdownItem>
-                                            <NavLink className="nav-link"  to='/invoice'>Invoice</NavLink>
+                                            <NavLink className="nav-link"  to='/invoice'><FaFileInvoiceDollar/> Invoice</NavLink>
                                         </DropdownItem>
                                         <DropdownItem>
-                                            <NavLink className="nav-link" to='/receipt'>Receipt</NavLink>
+                                            <NavLink className="nav-link" to='/receipt'><IoReceipt/> Receipt</NavLink>
                                         </DropdownItem>
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
-                                        Station
+                                         Station
                                     </DropdownToggle>
                                     <DropdownMenu left>
                                         <DropdownItem>
-                                            <NavLink className="nav-link"  to='/TanksFuel'>Tanks </NavLink>
+                                            <NavLink className="nav-link"  to='/TanksFuel'><GiFuelTank/> Tanks </NavLink>
                                         </DropdownItem>
                                         <DropdownItem>
-                                            <NavLink className="nav-link" to='/PumpsFuel'>Pumps</NavLink>
+                                            <NavLink className="nav-link" to='/PumpsFuel'><FaGasPump/> Pumps</NavLink>
                                         </DropdownItem>
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
                                 <NavItem>
-                                    <NavLink className="nav-link" to='/contactus'>Contact Us</NavLink>
+                                    <NavLink className="nav-link" to='/contactus'> Contact Us</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to='/aboutus'>About Us</NavLink>
+                                    <NavLink className="nav-link" to='/aboutus'> About Us</NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>

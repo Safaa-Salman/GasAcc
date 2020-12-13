@@ -13,7 +13,12 @@ export const Receipt = (state  = { isLoading: true,
         case ActionTypes.RECEIPT_FAILED:
             return {...state, isLoading: false, errMess: action.payload};
 
+        case ActionTypes.ADD_ONERECEIPT:
+            var onereceipt = action.payload;
+            return { ...state, receipt: state.receipt.concat(onereceipt)};
+
         default:
           return state;
       }
 };
+

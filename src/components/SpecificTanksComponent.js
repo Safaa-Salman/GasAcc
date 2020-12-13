@@ -12,9 +12,9 @@ import { baseUrl } from '../shared/baseUrl';
             return (
                 <Card>
                     <Link to={`/TanksFuel/${tank.fuelId}/Tank/${tank.id}`} >
-                        <CardImg className="mb-3" src='images/Tank_low.jpg' />
-                        <CardText className="ml-3">Fuel Capacity: {tank.fuelCapacity}</CardText>
-                        <CardText className="ml-3">Fuel Level: {tank.fuelLevel}</CardText>
+                        <CardImg className="mb-3" src='../images/Tank_low.jpg' style={{border: "0.5em solid #eb1c24"}}/>
+                        <CardText className="ml-2">Fuel Capacity: {tank.fuelCapacity}L</CardText>
+                        <CardText className="ml-2">Fuel Level: {tank.fuelLevel}L</CardText>
                     </Link>
                 </Card>
             );
@@ -23,9 +23,9 @@ import { baseUrl } from '../shared/baseUrl';
             return (
                 <Card>
                     <Link to={`/TanksFuel/${tank.fuelId}/Tank/${tank.id}`} >
-                        <CardImg className="mb-3" src='images/Tank_good.jpg' />
-                        <CardText className="ml-3">Fuel Capacity: {tank.fuelCapacity}</CardText>
-                        <CardText className="ml-3">Fuel Level: {tank.fuelLevel}</CardText>
+                        <CardImg className="mb-3" src='../images/Tank_good.jpg' />
+                        <CardText className="ml-2">Fuel Capacity: {tank.fuelCapacity}L</CardText>
+                        <CardText className="ml-2">Fuel Level: {tank.fuelLevel}L</CardText>
                     </Link>
                 </Card>
             );
@@ -66,10 +66,10 @@ import { baseUrl } from '../shared/baseUrl';
             return (
                 <div className="container">
                     <div className="row">
-                        <Breadcrumb>
+                        {/* <Breadcrumb>
                             <BreadcrumbItem><Link to="/TanksFuel">Tanks</Link></BreadcrumbItem>
                             <BreadcrumbItem active>{props.specificTanks[0].fuelId}</BreadcrumbItem>
-                        </Breadcrumb>
+                        </Breadcrumb> */}
                         <div className="col-12 mb-3">
                             <h3>Tanks of fuel type: {props.specificTanks[0].fuelId}</h3>
                             <hr />

@@ -1,3 +1,6 @@
+//--------------------------------------Login---------------------------------
+export const ADD_LOGIN = 'ADD_LOGIN';
+
 //--------------------------------------Contact Us: Feedback -------------------------------
 export const ADD_FEEDBACK = 'ADD_FEEDBACK';
 
@@ -10,10 +13,12 @@ export const SALES_FAILED = 'SALES_FAILED';
 export const ADD_RECEIPT = 'ADD_RECEIPT';
 export const RECEIPT_LOADING = 'RECEIPT_LOADING';
 export const RECEIPT_FAILED = 'RECEIPT_FAILED';
+export const ADD_ONERECEIPT = 'ADD_ONERECEIPT';
 
 export const ADD_INVOICE = 'ADD_INVOICE';
 export const INVOICE_LOADING = 'INVOICE_LOADING';
 export const INVOICE_FAILED = 'INVOICE_FAILED';
+export const ADD_ONEINVOICE = 'ADD_ONEINVOICE';
 
 //------------------------------------------ Fuel Tanks; Specific Tanks; Tank Detail --------------------------------
 

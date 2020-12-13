@@ -21,3 +21,8 @@ export const InitialFeedback = {
     contactType: 'Tel.',
     message: ''
 };
+
+export const InitialLogin = {
+    email: '',
+    password: ''
+};

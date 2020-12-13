@@ -5,7 +5,7 @@ import { FuelPumps } from './FuelPumps';
 import { FuelTanks } from './FuelTanks';
 import { SpecificPumps } from './SpecificPumps';
 import { SpecificTanks } from './SpecificTanks';
-import { InitialReceipt, InitialInvoice, InitialFeedback } from './forms';
+import { InitialReceipt, InitialInvoice, InitialFeedback, InitialLogin } from './forms';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { Invoice } from './Invoice';
@@ -25,7 +25,8 @@ export const ConfigureStore = () => {
             receipt: Receipt,
             sales: Sales,
             ...createForms({
-                feedback: InitialFeedback
+                feedback: InitialFeedback,
+                login: InitialLogin
                 // receipt: InitialReceipt,
                 // invoice: InitialInvoice
             })

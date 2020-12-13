@@ -12,7 +12,8 @@ import Sales from './SalesComponent';
 import Contact from './ContactComponent';
 import About from './Aboutus';
 import Home from './Home';
-import { postInvoice,postReceipt, postFeedback, fetchFuelPumps, fetchFuelTanks,fetchSpecificPumps, fetchSpecificTanks, fetchTankPumps, fetchInvoice, fetchReceipt,fetchSales } from '../redux/ActionCreators';
+import Login from './Login'
+import { postInvoice,postReceipt, postFeedback, fetchFuelPumps, fetchFuelTanks,fetchSpecificPumps, fetchSpecificTanks, fetchTankPumps, fetchInvoice, fetchReceipt,fetchSales, postLogin } from '../redux/ActionCreators';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form'
@@ -34,6 +35,8 @@ const mapDispatchToProps = dispatch => ({
   postFeedback: (firstname, lastname, telnum, email, agree, contactType, message) => dispatch(postFeedback(firstname, lastname, telnum, email, agree, contactType, message)),
   postInvoice: (company, tank, litre, value, serialnbr) => dispatch(postInvoice(company, tank, litre, value, serialnbr)),
   postReceipt: (company, value, serialnbr) => dispatch(postReceipt(company, value, serialnbr)),
+  postLogin: (email, password) => dispatch(postLogin(email, password)),
+  resetLoginForm: () => { dispatch(actions.reset('login'))},
   resetInvoiceForm: () => { dispatch(actions.reset('invoice'))},
   resetReceiptForm: () => { dispatch(actions.reset('receipt'))},
   resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
@@ -162,6 +165,15 @@ class Main extends Component {
       );
     };
 
+    const LoginPage = () => {
+      return(
+        <Login
+            resetLoginForm={this.props.resetLoginForm}
+            postLogin={this.props.postLogin}
+        />
+      );
+    };
+
     return (
       <div>
         <Header />
@@ -177,6 +189,7 @@ class Main extends Component {
               <Route exact path='/sales' component={SalesPage} />
               <Route exact path='/aboutus' component={() => <About/>} />
               <Route exact path='/home' component={() => <Home/>} />
+              <Route exact path='/login' component={LoginPage} />
               <Route exact path='/contactus' component={ContactPage} />
               <Redirect to="/sales" />
           </Switch>

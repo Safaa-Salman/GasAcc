@@ -10,8 +10,8 @@ import { baseUrl } from '../shared/baseUrl';
         return (
             <Card >
                 <Link to={`/PumpsFuel/${pump.fuelId}`} >
-                    <CardImg className="mb-3" src="images/pump.jpg" />
-                    <CardText className="ml-3">Pump Count:{pump.count}</CardText>
+                    <CardImg className="mb-3" src="../images/pump.jpg" />
+                    <CardText className="ml-3">Count: {pump.count}</CardText>
                 </Link>
             </Card>
         );
@@ -50,10 +50,10 @@ import { baseUrl } from '../shared/baseUrl';
             return (
                 <div className="container">
                     <div className="row">
-                    <Breadcrumb>
+                    {/* <Breadcrumb>
                             <BreadcrumbItem><Link to="/PumpsFuel">Pumps</Link></BreadcrumbItem>
                             <BreadcrumbItem active>{props.specificPumps[0].fuelId}</BreadcrumbItem>
-                        </Breadcrumb>
+                        </Breadcrumb> */}
                         <div className="col-12 mb-3">
                             <h3>Pumps of fuel type: {props.specificPumps[0].fuelId}</h3>
                             <hr/>
