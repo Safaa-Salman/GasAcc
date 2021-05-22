@@ -1,5 +1,5 @@
 import React  from 'react';
-import { Breadcrumb, BreadcrumbItem, Table, Button } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 
 
@@ -69,13 +69,13 @@ const  Sales  = (props) =>  {
                 </div>
 
                 <div className="row mb-4">
-                    <div className="col-4">
+                    <div className="col-12 col-md-4 mt-2">
                         <Button type="submit" color="primary" block>Today</Button>
                     </div>
-                    <div className="col-4">
+                    <div className="col-12 col-md-4 mt-2">
                         <Button type="submit" color="primary" block>This Month</Button>
                     </div>
-                    <div className="col-4">
+                    <div className="col-12 col-md-4 mt-2">
                         <Button type="submit" color="primary" block>Last Month</Button>
                     </div>
                 </div>

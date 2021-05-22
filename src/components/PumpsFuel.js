@@ -1,9 +1,8 @@
 import React from 'react';
-import { Card, CardImg, CardImgOverlay,
-    CardText, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Card, CardImg, CardText} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
-import { baseUrl } from '../shared/baseUrl';
+
 
 
     function RenderFuel ({fuel, onClick}) { 
@@ -13,6 +12,7 @@ import { baseUrl } from '../shared/baseUrl';
                 <Card>
                     <Link to={`/PumpsFuel/${fuel.id}`} >
                         <CardImg className="mb-3" src='images/Fuel_low.png' style={{border: "0.5em solid #eb1c24"}} />
+                        <CardText className="ml-2">Fuel Type: {fuel.name}</CardText>
                         <CardText className="ml-2">Fuel Quantity: {fuel.qty} L</CardText>
                     </Link>
                 </Card>
@@ -23,6 +23,7 @@ import { baseUrl } from '../shared/baseUrl';
                 <Card>
                     <Link to={`/PumpsFuel/${fuel.id}`} >
                         <CardImg className="mb-3" src='images/Fuel_good.png' />
+                        <CardText className="ml-2">Fuel Type: {fuel.name}</CardText>
                         <CardText className="ml-2">Fuel Quantity: {fuel.qty} L</CardText>
                     </Link>
                 </Card>
@@ -63,9 +64,9 @@ import { baseUrl } from '../shared/baseUrl';
             return (
                 <div className="container">
                     <div className="row">
-                        <Breadcrumb>
+                        {/* <Breadcrumb>
                             <BreadcrumbItem active>Pumps</BreadcrumbItem>
-                        </Breadcrumb>
+                        </Breadcrumb> */}
                         <div className="col-12 mb-3">
                             <h3>Pumps</h3>
                             <hr />

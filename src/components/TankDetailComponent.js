@@ -1,10 +1,8 @@
 /* eslint-disable react/jsx-pascal-case */
 import React from 'react';
-import { Card, CardImg, CardText, CardBody,
-     Breadcrumb, BreadcrumbItem} from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Card, CardImg, CardText, CardBody} from 'reactstrap';
 import { Loading } from './LoadingComponent';
-import { baseUrl } from '../shared/baseUrl';
+
 
     function RenderTank({specificTank}) {
         if(specificTank.status < 25){

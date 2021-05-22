@@ -3,6 +3,7 @@
 }
 .nav-link{
     margin-left: 2em !important;
+    /* color: #27debf !important; */
     color: #2fe79a !important;
     /* text-align: right !important; */
 }
@@ -10,9 +11,42 @@
 .navbar-light .navbar-toggler {
     color: #2bc685;
 }
+
 /* .navbar-brand {
     margin-right: 16em !important;
 } */
+
+
+
+.Home h1{
+    color: #263238 !important;
+    font-weight: bolder !important;
+    /* margin-top: 2em !important; */
+    font-family: 'Cooper';
+}
+
+.Home h5{
+    color: #37474f !important;
+    font-weight: bolder !important;
+    margin-top: 6em !important;
+    font-family: 'Cooper';
+}
+
+.Home h6{
+    color: #37474f !important;
+    font-weight: bolder !important;
+    margin-top: 2em !important;
+    font-family: 'Cooper';
+}
+
+.Home p{
+    color: #455a64 !important;
+    font-family: 'Dosis ExtraLight';
+}
+
+.Home img{
+    margin-top: 3em !important;
+}
 
 .form-group, h3 {
     color: #2bc685 !important;
@@ -49,6 +83,8 @@ img{
 
 .btn-primary {
     color: #fff;
+    /* background-color: #27debf !important;
+    border-color: #27debf !important */
     background-color: #2fe79a !important;
     border-color: #2fe79a !important;
     /* margin-top: 1em; */

@@ -10,7 +10,7 @@ function Footer(props) {
             <div className="row justify-content-center mt-4">
                 <div className="col-12 col-sm-5  mt-4">
                     <img src="images/logo_light.png" width="140" height="70"/>
-                    <p>Gasacc is a Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, laboriosam ipsum? Fuga obcaecati numquam consequuntur culpa?</p>
+                    <p>Gasacc is a startup that helps gas station owners to manage their buisness Fuga, laboriosam ipsum? Fuga obcaecati numquam consequuntur culpa?</p>
                     <FaPhoneAlt /> : +852 1234 5678 <br />
 		            <FaEnvelope/> : <a href="mailto:info@mywebsite.com">info@mywebsite.com</a><br/>
                     <a href="#"> <FaWhatsapp className="social mt-3" /></a>
@@ -24,7 +24,6 @@ function Footer(props) {
                     <ul className="list">
                     <li><Link to='/home'>Home</Link></li>
                         <li><Link to='/aboutus'>About Us</Link></li>
-                        <li><Link to='/menu'>Menu</Link></li>
                         <li><Link to='/contactus'>Contact Us</Link></li>
                         <li><Link to='/contactus'>Term and Conditions</Link></li>
                     </ul>

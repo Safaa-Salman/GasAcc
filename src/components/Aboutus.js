@@ -1,6 +1,4 @@
 import React from 'react';
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-
 
 function About(props) {
 
@@ -13,13 +11,13 @@ function About(props) {
                 </div>                
             </div>
             <div className="row row-content mt-5">
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-md-5 offset-1 order-sm-2 mb-2">
+                    <img src='images/GasStation.jpg' width="80%" height="90%" alt='Gas Station' />
+                </div>
+                <div className="col-12 col-md-6 order-sm-1">
                     <h2>Our History</h2>
                     <p>Started in 2010, Bla Bla quickly  it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.</p>
                     <p>The restaurant traces its humble beginnings to <em>The Frying Pan</em>, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</p>
-                </div>
-                <div className="col-12 col-md-5 offset-1">
-                    <img src='images/GasStation.jpg' width="80%" height="90%" alt='Gas Station' />
                 </div>
             </div>
             <div className="row row-content mt-5">

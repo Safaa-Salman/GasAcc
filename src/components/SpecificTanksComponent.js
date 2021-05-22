@@ -1,9 +1,7 @@
 import React from 'react';
-import { Card, CardImg, CardImgOverlay,
-    CardText, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Card, CardImg, CardText, } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
-import { baseUrl } from '../shared/baseUrl';
 
 
     function RenderTank ({tank, onClick}) {
@@ -71,7 +69,7 @@ import { baseUrl } from '../shared/baseUrl';
                             <BreadcrumbItem active>{props.specificTanks[0].fuelId}</BreadcrumbItem>
                         </Breadcrumb> */}
                         <div className="col-12 mb-3">
-                            <h3>Tanks of fuel type: {props.specificTanks[0].fuelId}</h3>
+                            <h3>Tanks of fuel type: {props.specificTanks[0].fuelname}</h3>
                             <hr />
                         </div>                
                     </div>

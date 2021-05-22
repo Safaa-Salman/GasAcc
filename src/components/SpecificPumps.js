@@ -1,9 +1,8 @@
 import React from 'react';
-import { Card, CardImg, CardImgOverlay,
-    CardText, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Card, CardImg, CardText } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
-import { baseUrl } from '../shared/baseUrl';
+
 
 
     function RenderPump ({pump, onClick}) {
@@ -55,7 +54,7 @@ import { baseUrl } from '../shared/baseUrl';
                             <BreadcrumbItem active>{props.specificPumps[0].fuelId}</BreadcrumbItem>
                         </Breadcrumb> */}
                         <div className="col-12 mb-3">
-                            <h3>Pumps of fuel type: {props.specificPumps[0].fuelId}</h3>
+                            <h3>Pumps of fuel type: {props.specificPumps[0].fuelname}</h3>
                             <hr/>
                         </div>                
                     </div>

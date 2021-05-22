@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem,
-    Button, Row, Col, Label, Table, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Button, Row, Col, Label, Table, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 
@@ -187,7 +186,7 @@ const  Receipt = (props) =>  {
                     <div className="col-7">
                         <h3>Receipts</h3>
                     </div> 
-                    <div className="col-5">
+                    <div className="col-12 col-md-5">
                         <InvoiceForm postReceipt={props.postReceipt} />
                     </div>                 
                 </div>

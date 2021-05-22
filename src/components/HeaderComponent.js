@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, UncontrolledDropdown,DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import { FaDollarSign, FaGasPump, FaFileInvoiceDollar, FaPhoneAlt, FaHome} from 'react-icons/fa';
-import { BsGraphUp, BsInfoCircle} from "react-icons/bs";
+import { FaGasPump, FaFileInvoiceDollar} from 'react-icons/fa';
+import { BsGraphUp} from "react-icons/bs";
 import { GiFuelTank } from "react-icons/gi";
 import { IoReceipt } from "react-icons/io5";
-import { RiBuildingLine } from "react-icons/ri";
+
 
 
 class Header extends Component {
